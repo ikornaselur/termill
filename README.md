@@ -21,6 +21,15 @@ This was just thrown together as a proof of concept, so it's likely very buggy.
 This has also only been tested on my MacOS machine, with ZSH. I have no idea if
 this works anywhere else.
 
+## Why not curses?
+I wanted to be able to monitor certain things and print out regular updates to
+the termina. As far as I could tell (based on very very limited research) I
+could do that with curses, but it would have to take over the whole terminal.
+
+I want to be able to print out few lines and update them, without having to
+take over the terminal, the idea being that I can see the history in my
+terminal right before running whatever is printing out updates.
+
 ## Usage
 
 ```python

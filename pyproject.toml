@@ -4,6 +4,8 @@ version = "0.1.0"
 description = ""
 authors = ["Axel <dev@absalon.is>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/ikornaselur/termill"
 
 [tool.poetry.dependencies]
 python = "^3.8"
