@@ -38,3 +38,7 @@ with termill() as t:
     t.print("there will be no line three")
     t.flush()
 ```
+
+## Demo
+
+![demo.gif](https://raw.githubusercontent.com/ikornaselur/termill/master/.github/demo.gif)
