@@ -26,15 +26,20 @@ def now() -> List[str]:
 
 def run() -> None:
     seconds = 5
-    with termill() as t:
+    with termill(initial_lines=8) as t:
         while seconds:
             for row in now():
-                t.print(row)
+                t.write(row)
 
-            t.print(f"Demo will run for {seconds} more seconds...")
+            t.write(f"Demo will run for {seconds} more seconds...")
 
-            if seconds == 2:
-                t.print("NEW LINE!!")
+            if seconds == 4:
+                t.write("Additional line")
+            elif seconds == 3:
+                t.write("Additional line")
+                t.write("And a second one")
+            elif seconds == 2:
+                t.write("Back to just one")
 
             t.flush()
             time.sleep(1)

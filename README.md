@@ -38,13 +38,12 @@ import time
 from termill import termill
 
 with termill() as t:
-    t.print("line one")
-    t.print("line two")
-    t.print("line three")
+    t.write("line one")
+    t.write("line two")
+    t.write("line three")
     t.flush()
     time.sleep(1)
-    t.print("line one has changed")
-    t.print("there will be no line three")
+    t.write_lines(["line one has changed", "there will be no line three"])
     t.flush()
 ```
 

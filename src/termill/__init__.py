@@ -10,7 +10,7 @@ class Printer:
     _lines: List[str]
     _max_lines_flushed: int
 
-    def __init__(self) -> None:
+    def __init__(self, initial_lines: int = 0) -> None:
         if not sys.stdout.isatty():
             raise Exception("Not atty")
 
@@ -19,7 +19,7 @@ class Printer:
         self.height = size.lines
 
         self._lines = []
-        self._max_lines_flushed = 0
+        self._max_lines_flushed = initial_lines
 
     def write(self, line: str) -> None:
         """ Add a single line to the internal lines buffer """
@@ -54,6 +54,6 @@ class Printer:
 
 
 @contextmanager
-def termill() -> Iterator[Printer]:
-    yield Printer()
+def termill(initial_lines: int = 0) -> Iterator[Printer]:
+    yield Printer(initial_lines=initial_lines)
     print()
