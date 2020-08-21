@@ -1,10 +1,9 @@
 import shutil
 import sys
-from contextlib import contextmanager
-from typing import Iterator, List
+from typing import List
 
 
-class Printer:
+class Termill:
     width: int
     height: int
     _lines: List[str]
@@ -25,13 +24,13 @@ class Printer:
         """ Add a single line to the internal lines buffer """
         self._lines.append(line)
 
-    def write_lines(self, lines: List[str]) -> None:
+    def writelines(self, lines: List[str]) -> None:
         """ Add multiple lines to the internal lines buffer """
         self._lines.extend(lines)
 
-    def print_lines(self, lines: List[str]) -> None:
+    def printlines(self, lines: List[str]) -> None:
         """ A shorthand to write multiple lines and flush immediately """
-        self.write_lines(lines)
+        self.writelines(lines)
         self.flush()
 
     def flush(self) -> None:
@@ -49,11 +48,6 @@ class Printer:
 
         self._lines = []
 
-        print("\b" * self.width * self._max_lines_flushed, end="")
-        print(output, end="\r")
-
-
-@contextmanager
-def termill(initial_lines: int = 0) -> Iterator[Printer]:
-    yield Printer(initial_lines=initial_lines)
-    print()
+        sys.stdout.write("\b" * self.width * self._max_lines_flushed)
+        sys.stdout.write(output)
+        sys.stdout.flush()

@@ -1,8 +1,8 @@
-import time
 import datetime as dt
+import time
 from typing import List
 
-from termill import termill
+from termill import Termill
 
 representations = {
     "0": ("###", "# #", "# #", "# #", "###"),
@@ -26,24 +26,25 @@ def now() -> List[str]:
 
 def run() -> None:
     seconds = 5
-    with termill(initial_lines=8) as t:
-        while seconds:
-            for row in now():
-                t.write(row)
+    t = Termill(initial_lines=8)
 
-            t.write(f"Demo will run for {seconds} more seconds...")
+    while seconds:
+        for row in now():
+            t.write(row)
 
-            if seconds == 4:
-                t.write("Additional line")
-            elif seconds == 3:
-                t.write("Additional line")
-                t.write("And a second one")
-            elif seconds == 2:
-                t.write("Back to just one")
+        t.write(f"Demo will run for {seconds} more seconds...")
 
-            t.flush()
-            time.sleep(1)
-            seconds -= 1
+        if seconds == 4:
+            t.write("Additional line")
+        elif seconds == 3:
+            t.write("Additional line")
+            t.write("And a second one")
+        elif seconds == 2:
+            t.write("Back to just one")
+
+        t.flush()
+        time.sleep(1)
+        seconds -= 1
 
 
 if __name__ == "__main__":

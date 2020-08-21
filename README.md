@@ -23,7 +23,7 @@ this works anywhere else.
 
 ## Why not curses?
 I wanted to be able to monitor certain things and print out regular updates to
-the termina. As far as I could tell (based on very very limited research) I
+the terminal. As far as I could tell (based on very very limited research) I
 could do that with curses, but it would have to take over the whole terminal.
 
 I want to be able to print out few lines and update them, without having to
@@ -35,16 +35,17 @@ terminal right before running whatever is printing out updates.
 ```python
 import time
 
-from termill import termill
+from termill import Termill
 
-with termill() as t:
-    t.write("line one")
-    t.write("line two")
-    t.write("line three")
-    t.flush()
-    time.sleep(1)
-    t.write_lines(["line one has changed", "there will be no line three"])
-    t.flush()
+t = Termill()
+
+t.write("line one")
+t.write("line two")
+t.write("line three")
+t.flush()
+time.sleep(1)
+t.writelines(["line one has changed", "there will be no line three"])
+t.flush()
 ```
 
 ## Demo
