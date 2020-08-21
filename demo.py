@@ -1,4 +1,5 @@
 import datetime as dt
+import json
 import time
 from typing import List
 
@@ -25,26 +26,20 @@ def now() -> List[str]:
 
 
 def run() -> None:
-    seconds = 5
     t = Termill(initial_lines=8)
 
-    while seconds:
+    with open("./demo.json", "r") as f:
+        frames = json.load(f)
+
+    for frame in frames:
         for row in now():
             t.write(row)
 
-        t.write(f"Demo will run for {seconds} more seconds...")
-
-        if seconds == 4:
-            t.write("Additional line")
-        elif seconds == 3:
-            t.write("Additional line")
-            t.write("And a second one")
-        elif seconds == 2:
-            t.write("Back to just one")
-
+        t.writelines(frame.split("\n"))
+        t.write("Art from https://www.incredibleart.org/links/ascii.html")
         t.flush()
-        time.sleep(1)
-        seconds -= 1
+
+        time.sleep(0.15)
 
 
 if __name__ == "__main__":
